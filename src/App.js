@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { FcrUIScene } from 'fcr-ui-scene'
+import { RtmTokenBuilder } from 'agora-token';
 import {
   FcrChatroom,
   FcrBoardWidget,
@@ -13,20 +14,28 @@ import {
 
 
 function App() {
+  const token = RtmTokenBuilder.buildToken(
+    '4e8308c48bee4bf58eb771839db26551',
+    '56ca6120fa124c118792a6998aaba457',
+    '1234',
+    0,
+  );
   const unmount = FcrUIScene.launch(document.querySelector("#root"), {
-    appId: "Your App ID",
-    region: "NA",
-    userUuid: "user id",
-    userName: "user name",
-    roomUuid: "room id",
+    appId: '4e8308c48bee4bf58eb771839db26551',
+    // region: AgoraRegion.EU,
+    // @ts-ignore
+    region: 'EU',
+    userUuid: '1234',
+    userName: 'user name',
+    roomUuid: 'room7',
     roomType: 4, // Room type: 4 is for small classes, currently only small classes are supported.
-    roomName: "room name",
-    pretest: true, // Whether to enable pre-class equipment detection
-    token: "rtm token", // In a test environment, you can use temporary RTM Token; in a production or security environment, it is strongly recommended that you use a server-generated RTM Token.
-    language: "zh",
+    roomName: 'room7 name',
+    devicePretest: true, // Whether to enable pre-class equipment detection
+    // token: '006329e02efa56748799b519bbd456f1a81IAA5ME5w3vZoxZrC+6adrFpoWYtMCD+1OSKq/2EMeFJgyUblcoaj4OObIgDaZeIEoIBPZgQAAQBwdU5mAgBwdU5mAwBwdU5mBABwdU5m',
+    token: token,
+    language: 'en',
     duration: 60 * 30, // Course time in seconds.
-    recordUrl: "your record url",
-    roleType: 1, // User roles: 1 is teacher, 2 is student
+    roleType: 2, // User roles: 1 is teacher, 2 is student
     widgets: {
       easemobIM: FcrChatroom, // IM widget
       netlessBoard: FcrBoardWidget, // Interactive whiteboard widget
